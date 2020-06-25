@@ -5,6 +5,25 @@ export const generateAccessToken = (user) => {
   return jwt.sign(user.toObject(), process.env.JWT_SECRET)
 }
 
+export const verifyToken = (req, res, next) => {
+  const bearerHeader = req.headers['authorization']
+
+  if(typeof bearerHeader !== undefined) {
+    const [bearer, bearerToken] = bearerHeader.split(' ')
+
+    jwt.verify(bearerToken, process.env.JWT_SECRET, (err, authData) => {
+      if(err) return res.sendStatus(403)
+
+      req.auth = authData
+      
+      next()
+    })
+  }
+  else {
+    res.sendStatus(403)
+  }
+}
+
 // param roles: string or array of strings
 export const authorize = (roles = []) => {
   if (typeof roles === 'string') {
@@ -29,24 +48,4 @@ export const authorize = (roles = []) => {
       next();
     }
   ];
-}
-
-
-export const verifyToken = (req, res, next) => {
-  const bearerHeader = req.headers['authorization']
-
-  if(typeof bearerHeader !== undefined) {
-    const [bearer, bearerToken] = bearerHeader.split(' ')
-
-    jwt.verify(bearerToken, process.env.JWT_SECRET, (err, authData) => {
-      if(err) return res.sendStatus(403)
-
-      req.auth = authData
-      
-      next()
-    })
-  }
-  else {
-    res.sendStatus(403)
-  }
 }

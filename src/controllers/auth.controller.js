@@ -1,12 +1,5 @@
-import jwt from 'jsonwebtoken'
-import expressJwt from 'express-jwt'
-
 import User from './../models/user.model'
 import { generateAccessToken } from './../helpers/authorize'
-
-export const userById = async (id) => {
-  return await User.findById(id).select('name lastname role').exec()
-}
 
 export const logIn = (req, res) => {
   User.findOne({

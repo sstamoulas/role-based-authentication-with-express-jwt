@@ -1,7 +1,5 @@
-import _ from 'lodash'
 import Product from './../models/product.model'
 import errorHandler from './../helpers/dbErrorHandler'
-import { userById } from './../controllers/auth.controller'
 
 export const productById = (req, res, next, id) => {
   let query = Product.findById(id)
