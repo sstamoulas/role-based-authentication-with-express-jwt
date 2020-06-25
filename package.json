@@ -1,0 +1,33 @@
+{
+  "name": "rba-using-jwt",
+  "version": "1.0.0",
+  "description": "Simple API with no UI, role based authentication using JWT token",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -r dotenv/config --exec babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stamatios Stamoulas",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.3",
+    "helmet": "^3.23.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.20"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/node": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "faker": "^4.1.0",
+    "nodemon": "^2.0.4"
+  }
+}
